@@ -8,6 +8,8 @@ import MKolay from '../screens/MKolay';
 import MigrosTv from '../screens/MigrosTv';
 import Profile from '../screens/Profile';
 
+import MKolayTab from '../../assets/images/mkolay-tab.png'
+
 const Tab = createBottomTabNavigator()
 
 export const TabStack = () => {
@@ -23,8 +25,8 @@ export const TabStack = () => {
                     if (route.name === 'Ansayfa') iconName = focused ? 'home' : 'home-outline'
                     else if (route.name === 'Migroskop') iconName = focused ? 'card' : 'card-outline'
                     else if (route.name === "MKolay") iconName = focused ? 'card' : 'card-outline'
-                    else if (route.name === "MigrosTv") iconName = focused ? 'card' : 'card-outline'
-                    else if (route.name === "Profil") iconName = focused ? 'card' : 'card-outline'
+                    else if (route.name === "MigrosTv") iconName = focused ? 'tv' : 'tv-outline'
+                    else if (route.name === "Profil") iconName = focused ? 'person' : 'person-outline'
 
                     return <Ionicons name={iconName} size={size} color={color} />;
                 },

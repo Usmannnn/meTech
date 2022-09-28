@@ -12,7 +12,7 @@ const RootNavigationContainer = () => {
             ...DefaultTheme.colors,
             primary: '#b83163',
             secondary: "#e4782e",
-            aqua: "65bab0",
+            aqua: "#65bab0",
             gray: "#D6D6D6",
             whitesmoke: "#F0F0F0",
             white: "#FFFFFF",
