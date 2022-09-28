@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
-import { TabStack } from './TabStack';
+import { RootStack } from './RootStack';
 import { StatusBar } from 'react-native';
 
 const RootNavigationContainer = () => {
@@ -23,7 +23,7 @@ const RootNavigationContainer = () => {
     return (
         <NavigationContainer theme={theme}>
             <StatusBar backgroundColor={theme.colors.secondary} barStyle={"light-content"} />
-            <TabStack />
+            <RootStack />
         </NavigationContainer>
     );
 }

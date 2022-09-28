@@ -1,6 +1,5 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import AssetWrapper from '../atoms/AssetWrapper'
 import IconWrapper from '../atoms/IconWrapper'
 import AntDesign from '@expo/vector-icons/AntDesign';
 

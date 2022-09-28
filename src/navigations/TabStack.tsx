@@ -4,11 +4,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Migroskop from '../screens/Migroskop';
-import MKolay from '../screens/MKolay';
 import MigrosTv from '../screens/MigrosTv';
 import Profile from '../screens/Profile';
-
-import MKolayTab from '../../assets/images/mkolay-tab.png'
+import MKolay from '../screens/MKolay';
 
 const Tab = createBottomTabNavigator()
 
