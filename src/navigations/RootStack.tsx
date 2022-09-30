@@ -11,7 +11,7 @@ export const RootStack = () => {
 
     return (
         <Stack.Navigator
-            initialRouteName='MKolay'
+            initialRouteName='ShoppingDetail'
             screenOptions={{
                 headerShown: false
             }}
