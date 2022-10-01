@@ -1,12 +1,11 @@
 import { StyleSheet, Text, useWindowDimensions, View } from 'react-native'
-import React, { useState, } from 'react'
+import React, { useEffect, useState, } from 'react'
 import { useNavigation, useTheme } from '@react-navigation/native'
 import QrEdges from '../components/atoms/QrEdges'
 import CustomButton from '../components/molecules/CustomButton'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import SvgQRCode from 'react-native-qrcode-svg';
-import { WebView } from 'react-native-webview';
-import { TouchableOpacity } from 'react-native-gesture-handler'
+
 
 const QRPage = () => {
 
@@ -14,7 +13,6 @@ const QRPage = () => {
     const navigation = useNavigation()
     const { height } = useWindowDimensions()
     const [status, setStatus] = useState(false)
-
 
     return (
         <View style={styles.container}>
