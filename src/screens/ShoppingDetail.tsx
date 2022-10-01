@@ -5,6 +5,7 @@ import { useNavigation, useTheme } from '@react-navigation/native';
 import Pressable from '../components/atoms/Pressable';
 import ItemContainer from '../components/molecules/ItemContainer';
 import PurgePage from './PurgePage';
+import { getDatabase, onValue, ref } from 'firebase/database';
 
 
 export interface Items {
@@ -106,16 +107,20 @@ const ShopingDetail = () => {
 
     const [active, setActive] = useState(false)
 
+    const readQR = () => {
+        const db = getDatabase();
+        return onValue(ref(db, '/codes'), codes => {
+            let data = codes.val() || {};
+            if (data.status === 2) setActive(true)
+        });
+    }
 
     useEffect(() => {
-        let timeout = setTimeout(() => setActive(true), 2000)
-        return () => {
-            setActive(false)
-            clearTimeout(timeout)
-        }
+        readQR()
     }, [])
 
     if (!active) return <PurgePage />
+
     else return (
         <View style={[styles.container, { backgroundColor: colors.whitesmoke }]}>
             <View style={styles.innerContainer}>

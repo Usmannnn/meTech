@@ -5,14 +5,49 @@ import QrEdges from '../components/atoms/QrEdges'
 import CustomButton from '../components/molecules/CustomButton'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import SvgQRCode from 'react-native-qrcode-svg';
+import { getDatabase, ref, onValue, set } from 'firebase/database';
 
 
 const QRPage = () => {
 
+
     const { colors } = useTheme()
     const navigation = useNavigation()
     const { height } = useWindowDimensions()
-    const [status, setStatus] = useState(false)
+    const [value, setValue] = useState(Math.random().toString())
+    const [data, setData] = useState(null)
+
+    const storeQR = ({ id, val, status }: { id?: number, val?: string, status?: number }) => {
+        const db = getDatabase();
+        const reference = ref(db, 'codes');
+        set(reference, {
+            id: id || 0,
+            value: val || value,
+            status: status || 0
+        });
+    }
+
+    const readQR = () => {
+        const db = getDatabase();
+        return onValue(ref(db, '/codes'), codes => {
+            let data = codes.val() || {};
+            setData(data)
+        });
+    }
+
+    useEffect(() => {
+        readQR()
+        storeQR({})
+    }, [])
+
+    useEffect(() => {
+        if (data?.status === 1) navigation.navigate("ShoppingDetail")
+        else if (data?.status === 101) {
+            let val = Math.random().toString()
+            setValue(val)
+            storeQR({ val })
+        } else if (data?.status === 1001) alert("Crash")
+    }, [data])
 
     return (
         <View style={styles.container}>
@@ -38,7 +73,7 @@ const QRPage = () => {
                         edges={[0, 0, 1, 1]}
                         position={[undefined, undefined, 0, 0]}
                     />
-                    <SvgQRCode value='value' size={height * .2} />
+                    <SvgQRCode value={value} size={height * .2} />
                 </View>
                 <View style={styles.buttonContaier}>
                     <CustomButton
@@ -57,8 +92,6 @@ const QRPage = () => {
         </View>
     )
 }
-
-// metech-8646e
 
 export default QRPage
 
