@@ -51,14 +51,16 @@ const QRPage = () => {
                     <CustomButton
                         text='Yeni Kart Ekle'
                         icon={() => <Ionicons name={"card"} size={30} color={colors.secondary} />}
-                        action={() => navigation.navigate("ShoppingDetail")}
-                    // action={() => navigation.navigate("WebViewScreen")}
+                        // action={() => navigation.navigate("ShoppingDetail")}
+                        action={() => navigation.navigate("WebViewScreen")}
                     />
                 </View>
             </View>
         </View>
     )
 }
+
+// metech-8646e
 
 export default QRPage
 

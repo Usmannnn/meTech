@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "939368136070",
+    "project_id": "metech-8646e",
+    "storage_bucket": "metech-8646e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939368136070:android:35e399e52e69505f704007",
+        "android_client_info": {
+          "package_name": "com.meTech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "939368136070-65fkrvrc9msgc62arb9t11nki48a6mpf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwmdpoI4dm8uva5BrAHKXcBeyd7y2PTcM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "939368136070-65fkrvrc9msgc62arb9t11nki48a6mpf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
