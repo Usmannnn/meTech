@@ -1,7 +1,8 @@
 import { StyleSheet, View } from 'react-native'
 import React from 'react'
+import { StyleProps } from 'react-native-reanimated'
 
-const IconWrapper = ({ icon, customStyle }: { icon: any, customStyle?: any }) => {
+const IconWrapper = ({ icon, customStyle }: { icon: any, customStyle?: StyleProps }) => {
     return (
         <View style={[styles.container, customStyle]}>
             {icon()}

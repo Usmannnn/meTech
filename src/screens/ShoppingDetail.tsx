@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View, ImageRequireSource } from 'react-native'
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import BottomSheet from '../components/organisms/BottomSheet'
-import { useTheme } from '@react-navigation/native';
+import { useNavigation, useTheme } from '@react-navigation/native';
 import Pressable from '../components/atoms/Pressable';
 import ItemContainer from '../components/molecules/ItemContainer';
+import PurgePage from './PurgePage';
 
 
 export interface Items {
@@ -18,6 +19,7 @@ export interface Items {
 const ShopingDetail = () => {
 
     const { colors } = useTheme()
+    const navigation = useNavigation()
 
     const data: Items[] = [
         {
@@ -102,7 +104,19 @@ const ShopingDetail = () => {
         }
     ]
 
-    return (
+    const [active, setActive] = useState(false)
+
+
+    useEffect(() => {
+        let timeout = setTimeout(() => setActive(true), 2000)
+        return () => {
+            setActive(false)
+            clearTimeout(timeout)
+        }
+    }, [])
+
+    if (!active) return <PurgePage />
+    else return (
         <View style={[styles.container, { backgroundColor: colors.whitesmoke }]}>
             <View style={styles.innerContainer}>
                 <Text style={{ color: colors.black, fontSize: 26, fontWeight: "bold", textAlign: "center" }}>
@@ -111,12 +125,18 @@ const ShopingDetail = () => {
                 <Text style={{ color: colors.black, fontSize: 19, textAlign: "center", marginVertical: 25 }}>
                     Faturan oluştuğunda Alışveriş Geçmişim kısmından görüntüleyebilirsin.
                 </Text>
-                <Pressable
-                    text={"Anasayfaya Dön"}
-                />
+                <Pressable text={"Anasayfaya Dön"} action={() => navigation.navigate("Tabs")} />
             </View>
             <BottomSheet
                 isActive={true}
+                headerItem={() => {
+                    return (
+                        <View style={styles.headTitle}>
+                            <Text style={{ fontWeight: "bold", fontSize: 15 }}>Ödenen Tutar</Text>
+                            <Text style={{ fontWeight: "bold", fontSize: 15, color: colors.headerColor }}>56,24 TL</Text>
+                        </View>
+                    )
+                }}
                 renderItems={() => <ItemContainer data={data} />}
             />
         </View>
@@ -133,5 +153,15 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "flex-start",
         paddingTop: 50
-    }
+    },
+    headTitle: {
+        flex: 1,
+        width: "100%",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        paddingHorizontal: 20,
+        borderBottomColor: "#f6f6f6",
+        borderBottomWidth: 2
+    },
 })

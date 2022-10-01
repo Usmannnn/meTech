@@ -9,10 +9,11 @@ import { Items } from '../../screens/ShoppingDetail'
 const ItemContainer = ({ data }: { data: Items[] }) => {
 
     const { colors } = useTheme()
+
     const CountView = ({ count }: { count: number }) => {
         return (
-            <View style={styles.countView}>
-                <Text style={{ color: "#9f9f9f" }}>{count} adet</Text>
+            <View style={[styles.countView, { backgroundColor: "#f0f8f7", borderWidth: 1, borderColor: colors.headerColor }]}>
+                <Text style={{ color: colors.headerColor, fontWeight: "bold" }}>{count} adet</Text>
             </View>
         )
     }
@@ -25,11 +26,11 @@ const ItemContainer = ({ data }: { data: Items[] }) => {
                         <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
                             <AssetWrapper source={item.source} />
                             <View style={styles.detailContainer}>
-                                <View style={{ marginBottom: 10 }}>
+                                <View style={{ marginBottom: 5 }}>
                                     <Text style={{ fontWeight: "bold", color: "black", fontSize: 16 }}>{item.title}</Text>
                                     <Text style={{ fontWeight: "400", color: "#bcbcbc", fontSize: 15 }}>{item.detail}</Text>
                                 </View>
-                                <Text style={{ fontSize: 16, color: colors.primary, fontWeight: "bold" }}>{item.amount} {item.sign}</Text>
+                                <Text style={{ fontSize: 16, color: colors.headerColor, fontWeight: "bold" }}>{item.amount} {item.sign}</Text>
                             </View>
                         </View>
                         <CountView count={item.count} />

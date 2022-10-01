@@ -23,7 +23,10 @@ const MKolay = () => {
             text: "Mkolay Mağaza ile ürünlerinizi kolayca okutun, JetKasa ile ödeyin",
             logo: Logo1,
             customStyle: { backgroundColor: colors.aqua, iconWrapper: "#53a299" },
-            action: () => navigation.navigate("QRStack" as never, { headerColor: "#53a299" })
+            action: () => {
+                navigation.navigate("QRStack" as never)
+                colors.headerColor = "#53a299"
+            }
         },
         {
             id: 1,
@@ -31,7 +34,10 @@ const MKolay = () => {
             text: "Mkolay Kantin ile ürünlerinizi kolayca okutun, telefonunuzdan ödeyin",
             logo: Logo2,
             customStyle: { backgroundColor: colors.primary, iconWrapper: "#a72b59" },
-            action: () => navigation.navigate("QRStack" as never, { headerColor: "#a72b59" })
+            action: () => {
+                navigation.navigate("QRStack" as never)
+                colors.headerColor = "#a72b59"
+            }
         }
     ]
 

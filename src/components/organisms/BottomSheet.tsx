@@ -9,9 +9,6 @@ import Animated, {
     WithSpringConfig,
 } from 'react-native-reanimated';
 import { PanGestureHandler, ScrollView } from 'react-native-gesture-handler';
-import ItemContainer from '../molecules/ItemContainer';
-
-
 
 const enum SheetStatus {
     CLOSED,
@@ -19,7 +16,7 @@ const enum SheetStatus {
     MAX
 }
 
-const BottomSheet = ({ isActive, renderItems }: { isActive: boolean, renderItems: any }) => {
+const BottomSheet = ({ isActive, renderItems, headerItem }: { isActive: boolean, renderItems: any, headerItem: any }) => {
 
 
     const { colors } = useTheme()
@@ -95,10 +92,7 @@ const BottomSheet = ({ isActive, renderItems }: { isActive: boolean, renderItems
             >
                 <View style={[styles.headContainer, { height: -CLOSED }]}>
                     <View style={{ backgroundColor: colors.black, height: 5, width: "20%", borderRadius: 10, marginTop: 10 }} />
-                    <View style={styles.headTitle}>
-                        <Text style={{ fontWeight: "bold", fontSize: 15 }}>Ödenen Tutar</Text>
-                        <Text style={{ fontWeight: "bold", fontSize: 15, color: colors.primary }}>56,24 TL</Text>
-                    </View>
+                    {headerItem()}
                 </View>
                 <ScrollView
                     showsVerticalScrollIndicator={false}
@@ -130,16 +124,6 @@ const styles = StyleSheet.create({
     headContainer: {
         justifyContent: "center",
         alignItems: "center",
-    },
-    headTitle: {
-        flex: 1,
-        width: "100%",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        paddingHorizontal: 20,
-        borderBottomColor: "#f6f6f6",
-        borderBottomWidth: 2
     },
     itemContainer: {
         paddingHorizontal: 20

@@ -16,13 +16,14 @@ const RootNavigationContainer = () => {
             gray: "#D6D6D6",
             whitesmoke: "#F0F0F0",
             white: "#FFFFFF",
-            black: "#000000"
+            black: "#000000",
+            headerColor: "#e4782e"
         },
     };
 
     return (
         <NavigationContainer theme={theme}>
-            <StatusBar backgroundColor={theme.colors.secondary} barStyle={"light-content"} />
+            <StatusBar backgroundColor={theme.colors.headerColor} barStyle={"light-content"} />
             <RootStack />
         </NavigationContainer>
     );

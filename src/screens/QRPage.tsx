@@ -5,13 +5,15 @@ import QrEdges from '../components/atoms/QrEdges'
 import CustomButton from '../components/molecules/CustomButton'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import SvgQRCode from 'react-native-qrcode-svg';
+import { WebView } from 'react-native-webview';
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const QRPage = () => {
 
     const { colors } = useTheme()
     const navigation = useNavigation()
     const { height } = useWindowDimensions()
-    const [status, setStatus] = useState(true)
+    const [status, setStatus] = useState(false)
 
 
     return (
@@ -44,12 +46,13 @@ const QRPage = () => {
                     <CustomButton
                         text='Alışveriş Geçmişim'
                         icon={() => <Ionicons name={"card"} size={30} color={colors.secondary} />}
-                        action={() => navigation.navigate("PurgPage")}
+                        action={() => navigation.navigate("History")}
                     />
                     <CustomButton
                         text='Yeni Kart Ekle'
                         icon={() => <Ionicons name={"card"} size={30} color={colors.secondary} />}
-                        action={() => navigation.navigate("PurgPage")}
+                        action={() => navigation.navigate("ShoppingDetail")}
+                    // action={() => navigation.navigate("WebViewScreen")}
                     />
                 </View>
             </View>

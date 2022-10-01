@@ -1,18 +1,11 @@
 import { StyleSheet, View, ImageBackground, Text } from 'react-native'
-import React, { useEffect } from 'react'
-import { useNavigation } from '@react-navigation/native';
+import React from 'react'
 
 
 import Image1 from '../../assets/images/SEM01652.png'
 
 
 const PurgePage = () => {
-
-    const navigation = useNavigation()
-
-    useEffect(() => {
-        setTimeout(() => navigation.navigate("ShoppingDetail"), 2000)
-    }, [])
 
     return (
         <View style={styles.container}>
