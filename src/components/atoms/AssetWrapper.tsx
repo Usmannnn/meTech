@@ -1,12 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Image, ImageRequireSource, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 
 
-const AssetWrapper = ({ customStyle }: { customStyle?: any }) => {
+const AssetWrapper = ({ customStyle, source }: { customStyle?: any, source: ImageRequireSource }) => {
     return (
         <View style={[styles.container, customStyle]}>
-            <Text>35235</Text>
+            <Image source={source} style={{ width: 100, height: 100 }} resizeMode={"center"} />
         </View>
     )
 }

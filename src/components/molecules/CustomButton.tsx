@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View, useWindowDimensions, TouchableOpacity } from 'react-native'
 import React from 'react'
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '@react-navigation/native';
 
 
-const CustomButton = ({ text, action }: { text: string, action: any }) => {
+const CustomButton = ({ text, action, icon }: { text: string, action: any, icon: any }) => {
 
     const { colors } = useTheme()
     const { width } = useWindowDimensions()
@@ -14,7 +13,7 @@ const CustomButton = ({ text, action }: { text: string, action: any }) => {
             style={[styles.container, { width: (width / 2) - 45, borderColor: colors.gray }]}
             onPress={() => action()}
         >
-            <Ionicons name={"card"} size={30} color={colors.secondary} />
+            {icon()}
             <View style={{ paddingHorizontal: 15 }}>
                 <Text style={{ textAlign: "center", fontWeight: "700", fontSize: 16 }}>{text}</Text>
             </View>

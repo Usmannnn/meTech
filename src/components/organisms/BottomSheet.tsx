@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, useWindowDimensions } from 'react-native'
+import { StyleSheet, View, Text, useWindowDimensions, NativeScrollEvent } from 'react-native'
 import React, { useEffect } from 'react'
 import { useTheme } from '@react-navigation/native'
 import Animated, {
@@ -9,6 +9,7 @@ import Animated, {
     WithSpringConfig,
 } from 'react-native-reanimated';
 import { PanGestureHandler, ScrollView } from 'react-native-gesture-handler';
+import ItemContainer from '../molecules/ItemContainer';
 
 
 
@@ -18,7 +19,7 @@ const enum SheetStatus {
     MAX
 }
 
-const BottomSheet = ({ isActive }: { isActive: boolean }) => {
+const BottomSheet = ({ isActive, renderItems }: { isActive: boolean, renderItems: any }) => {
 
 
     const { colors } = useTheme()
@@ -58,9 +59,11 @@ const BottomSheet = ({ isActive }: { isActive: boolean }) => {
 
             if (sheetStatus.value === SheetStatus.CLOSED) {
                 animatedHeight.value = withSpring(MIN_HEIGHT, springConfig);
+                sheetStatus.value = SheetStatus.MIN
             }
             else if (sheetStatus.value === SheetStatus.MIN) {
                 animatedHeight.value = withSpring(MAX_HEIGHT, springConfig);
+                sheetStatus.value = SheetStatus.MAX
             }
             else if (sheetStatus.value != SheetStatus.CLOSED && -animatedHeight.value < -MAX_HEIGHT + 1) {
                 animatedHeight.value = withSpring(CLOSED, springConfig);
@@ -68,6 +71,15 @@ const BottomSheet = ({ isActive }: { isActive: boolean }) => {
 
         }
     });
+
+
+    const isCloseTo = ({ layoutMeasurement, contentOffset, contentSize }: NativeScrollEvent) => {
+
+        const reachedBottom = layoutMeasurement.height + contentOffset.y >= contentSize.height
+        // const reachedTop = contentOffset.y == 0
+        if (reachedBottom && sheetStatus.value === SheetStatus.MIN) animatedHeight.value = withSpring(MAX_HEIGHT, springConfig)
+    };
+
 
     const animatedStyle = useAnimatedStyle(() => {
         return {
@@ -82,7 +94,7 @@ const BottomSheet = ({ isActive }: { isActive: boolean }) => {
                 style={[styles.container, animatedStyle]}
             >
                 <View style={[styles.headContainer, { height: -CLOSED }]}>
-                    <View style={{ backgroundColor: colors.black, height: 5, width: "20%", borderRadius: 10, marginVertical: 10 }} />
+                    <View style={{ backgroundColor: colors.black, height: 5, width: "20%", borderRadius: 10, marginTop: 10 }} />
                     <View style={styles.headTitle}>
                         <Text style={{ fontWeight: "bold", fontSize: 15 }}>Ödenen Tutar</Text>
                         <Text style={{ fontWeight: "bold", fontSize: 15, color: colors.primary }}>56,24 TL</Text>
@@ -91,73 +103,10 @@ const BottomSheet = ({ isActive }: { isActive: boolean }) => {
                 <ScrollView
                     showsVerticalScrollIndicator={false}
                     style={styles.itemContainer}
+                    onScroll={({ nativeEvent }) => isCloseTo(nativeEvent)}
+                    scrollEventThrottle={400}
                 >
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
-                    <Text>saf</Text>
+                    {renderItems()}
                 </ScrollView>
             </Animated.View>
         </PanGestureHandler>
@@ -189,6 +138,8 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         paddingHorizontal: 20,
+        borderBottomColor: "#f6f6f6",
+        borderBottomWidth: 2
     },
     itemContainer: {
         paddingHorizontal: 20

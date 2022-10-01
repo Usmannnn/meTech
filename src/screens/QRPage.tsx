@@ -2,7 +2,8 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useState, } from 'react'
 import { useNavigation, useTheme } from '@react-navigation/native'
 import QrEdges from '../components/atoms/QrEdges'
-import CustomButton from '../components/atoms/CustomButton'
+import CustomButton from '../components/molecules/CustomButton'
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 
 const QRPage = () => {
@@ -42,8 +43,16 @@ const QRPage = () => {
                 </View>
             </View>
             <View style={styles.buttonContaier}>
-                <CustomButton text='Alışveriş Geçmişim' action={() => navigation.navigate("PurgPage")} />
-                <CustomButton text='Yeni Kart Ekle' action={() => navigation.navigate("PurgPage")} />
+                <CustomButton
+                    text='Alışveriş Geçmişim'
+                    icon={() => <Ionicons name={"card"} size={30} color={colors.secondary} />}
+                    action={() => navigation.navigate("PurgPage")}
+                />
+                <CustomButton
+                    text='Yeni Kart Ekle'
+                    icon={() => <Ionicons name={"card"} size={30} color={colors.secondary} />}
+                    action={() => navigation.navigate("PurgPage")}
+                />
             </View>
         </View>
     )
