@@ -11,9 +11,6 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "plugins": [
-      "@react-native-firebase/app"
-    ],
     "updates": {
       "fallbackToCacheTimeout": 0
     },

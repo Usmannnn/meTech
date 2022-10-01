@@ -4,10 +4,6 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { RootStack } from './RootStack';
 import { StatusBar } from 'react-native';
 
-import { initializeApp } from "firebase/app";
-import { getMessaging, onMessage } from "firebase/messaging";
-
-
 
 const RootNavigationContainer = () => {
 
@@ -20,17 +16,6 @@ const RootNavigationContainer = () => {
         appId: "1:939368136070:web:99e4cac3229ea2d6704007",
         measurementId: "G-25Y1SJ83L0"
     };
-
-    let myApp = initializeApp(firebaseConfig);
-
-    const messaging = getMessaging();
-
-    React.useEffect(() => {
-        // onMessage(messaging, (payload) => {
-        //     console.log('Message received. ', payload);
-        // });
-        console.log(myApp)
-    }, [])
 
     const theme = {
         ...DefaultTheme,
